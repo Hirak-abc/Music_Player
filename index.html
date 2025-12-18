@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline Music Player</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app__header">
+      <div>
+        <h1>Offline Music Player</h1>
+        <p class="subtitle">Play local files and folders — no internet required.</p>
+      </div>
+      <div class="loaders">
+        <label class="btn">
+          <input id="fileInput" type="file" accept=".mp3,.wav,.aac" multiple hidden>
+          Add Files
+        </label>
+        <label class="btn">
+          <input id="folderInput" type="file" webkitdirectory directory multiple hidden>
+          Add Folder
+        </label>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="panel playlists">
+        <div class="panel__header">
+          <h2>Playlists</h2>
+          <div class="playlist-new">
+            <input id="playlistName" type="text" placeholder="New playlist name">
+            <button id="createPlaylistBtn" class="btn btn-small">Create</button>
+          </div>
+        </div>
+        <ul id="playlistList" class="list"></ul>
+      </aside>
+
+      <section class="panel tracks">
+        <div class="panel__header">
+          <div>
+            <h2 id="playlistTitle">Tracks</h2>
+            <p id="playlistMeta" class="muted"></p>
+          </div>
+          <div class="playback-modes">
+            <button id="shuffleBtn" class="icon-btn" title="Shuffle">
+              <span>🔀</span>
+            </button>
+            <button id="repeatBtn" class="icon-btn" title="Repeat">
+              <span id="repeatLabel">🔁</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="now-playing">
+          <div>
+            <p class="muted">Now Playing</p>
+            <h3 id="currentTrack">Nothing selected</h3>
+          </div>
+          <div class="time">
+            <span id="currentTime">0:00</span>
+            <span>/</span>
+            <span id="totalTime">0:00</span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="controls__main">
+            <button id="prevBtn" class="icon-btn" title="Previous">⏮</button>
+            <button id="seekBackBtn" class="icon-btn" title="Seek Back 10s">⏪</button>
+            <button id="playPauseBtn" class="play-btn" title="Play / Pause">▶️</button>
+            <button id="seekForwardBtn" class="icon-btn" title="Seek Forward 10s">⏩</button>
+            <button id="nextBtn" class="icon-btn" title="Next">⏭</button>
+            <button id="stopBtn" class="icon-btn" title="Stop">⏹</button>
+          </div>
+          <div class="controls__secondary">
+            <input id="seekBar" type="range" min="0" max="100" value="0">
+            <div class="volume">
+              <span>🔊</span>
+              <input id="volume" type="range" min="0" max="1" step="0.01" value="1">
+            </div>
+          </div>
+        </div>
+
+        <ul id="trackList" class="list tracks__list"></ul>
+      </section>
+    </main>
+  </div>
+
+  <audio id="audio" preload="metadata"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
+
